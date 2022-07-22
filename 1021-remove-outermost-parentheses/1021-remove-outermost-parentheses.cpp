@@ -7,15 +7,17 @@ public:
             if (s[i] == '(') {
                 if (count>0)
                     ans += '(';
-        
+
                 count++;
             }
             
             else {
-                --count;
+                
+                count--;
                 
                 if (count>0)
                     ans += ')';
+                
             }
         }
         
