@@ -1,9 +1,10 @@
 class Solution {
 public:
     int maximumUnits(vector<vector<int>>& boxTypes, int truckSize) {
-        sort(boxTypes.begin(), boxTypes.end());
+        
         int total = 0;
         int flag;
+        
         for(int i = 0;  ;i++) {
             int maxj = 0;
             for(int j = 0;j<boxTypes.size();j++){
