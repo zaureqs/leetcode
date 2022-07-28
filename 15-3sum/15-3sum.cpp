@@ -9,9 +9,9 @@ public:
         return res;
     
     sort(nums.begin(),nums.end());
+
     for(int i = 0; i<len; i++){
         if(i>0 && nums[i]==nums[i-1])
-           
             continue; 
         
         int left = i + 1, right = nums.size() - 1; 
