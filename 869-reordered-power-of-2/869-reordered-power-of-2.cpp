@@ -10,13 +10,13 @@ public:
             power.push_back(to_string(p));
         }
         
-        for(int i=0;i<=30;i++){
+        for(int i=0;i<=30;i++)
             sort(power[i].begin(),power[i].end());
-        }
         
-        for(int i=0;i<=30;i++){
+        
+        for(int i=0;i<=30;i++)
             if(power[i] == s ) return true;
-        }
+        
         return false;
     }
 };
