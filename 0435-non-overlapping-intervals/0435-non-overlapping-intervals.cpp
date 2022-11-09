@@ -14,7 +14,6 @@ public:
 
 
             if (interval[i][0] < end){
-                cout << interval[i][0]<<"  ";
                 ans++;
 
                 end = min(interval[i][1], end);
