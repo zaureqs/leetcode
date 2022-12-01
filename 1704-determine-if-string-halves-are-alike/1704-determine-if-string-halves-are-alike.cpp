@@ -13,9 +13,9 @@ public:
             }
                 
         }
-        if(count==0)
+        if(!count)
             return true;
-        else
+        
             return false;
     }
 };
