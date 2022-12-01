@@ -46,28 +46,20 @@ void stockBuySell(int price[], int n) {
     
     for(sell = 0;sell<n;sell++)
     {
-        currDiff = price[sell]-price[buy];
-        
         if(price[sell]<price[sell-1])
         {
             if(buy != sell-1)
             {
                 cout<<"("<<buy<<" "<<sell-1<<") ";
                 buy=sell;
-                diff=0;
             }
             else{
                 buy=sell;
-                diff=0;
             }
-        }
-        else
-        {
-           diff = max(diff,currDiff);
         }
     }
     
-    if(diff>0)
+    if(price[n-1]>price[n-2])
     {
         if(buy!=(sell-1))
             cout<<"("<<buy<<" "<<sell-1<<") ";
