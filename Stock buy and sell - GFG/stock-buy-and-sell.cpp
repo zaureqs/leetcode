@@ -42,7 +42,7 @@ void stockBuySell(int price[], int n) {
         return;
     }
     
-    int sell = 0,buy=0,diff = 0,currDiff = 0;
+    int sell = 0,buy=0;
     
     for(sell = 0;sell<n;sell++)
     {
