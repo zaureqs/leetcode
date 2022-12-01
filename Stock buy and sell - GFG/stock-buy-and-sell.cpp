@@ -48,7 +48,7 @@ void stockBuySell(int price[], int n) {
     {
         currDiff = price[sell]-price[buy];
         
-        if(currDiff<diff)
+        if(price[sell]<price[sell-1])
         {
             if(buy != sell-1)
             {
