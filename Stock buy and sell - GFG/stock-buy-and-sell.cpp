@@ -44,7 +44,7 @@ void stockBuySell(int price[], int n) {
     
     int sell = 0,buy=0;
     
-    for(sell = 0;sell<n;sell++)
+    for(sell = 1;sell<n;sell++)
     {
         if(price[sell]<price[sell-1])
         {
