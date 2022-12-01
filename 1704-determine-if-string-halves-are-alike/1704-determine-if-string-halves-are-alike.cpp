@@ -13,9 +13,7 @@ public:
             }
                 
         }
-        if(!count)
-            return true;
         
-            return false;
+        return count == 0;
     }
 };
