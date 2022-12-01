@@ -44,25 +44,25 @@ void stockBuySell(int price[], int n) {
     
     int sell = 0,buy=0;
     
-    for(sell = 1;sell<n;sell++)
+    for(sell = 0;sell<n-1;sell++)
     {
-        if(price[sell]<price[sell-1])
+        if(price[sell]>price[sell+1])
         {
-            if(buy != sell-1)
+            if(buy != sell)
             {
-                cout<<"("<<buy<<" "<<sell-1<<") ";
-                buy=sell;
+                cout<<"("<<buy<<" "<<sell<<") ";
+                buy=sell+1;
             }
             else{
-                buy=sell;
+                buy=sell+1;
             }
         }
     }
     
     if(price[n-1]>price[n-2])
     {
-        if(buy!=(sell-1))
-            cout<<"("<<buy<<" "<<sell-1<<") ";
+        if(buy!=(sell))
+            cout<<"("<<buy<<" "<<sell<<") ";
     }
     cout<<endl;
 }
