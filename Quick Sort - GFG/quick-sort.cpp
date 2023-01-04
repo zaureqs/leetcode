@@ -29,11 +29,9 @@ class Solution
                 j--;
             if (i <= j)
             {
-                int temp = arr[i];
-                    arr[i] = arr[j];
-                    arr[j] = temp;
-                    i++;
-                    j--;
+                swap(arr[i],arr[j]);
+                i++;
+                j--;
             }
         }
         if (low < j)
