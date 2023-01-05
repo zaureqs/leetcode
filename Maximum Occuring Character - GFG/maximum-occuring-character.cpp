@@ -14,15 +14,13 @@ class Solution
     char getMaxOccuringChar(string str)
     {
         map<char,int> mp;
+        int maxi = -1;
        for(auto &it : str)
        {
            mp[it]++;
+           maxi = max(maxi,mp[it]);
        }
-       int maxi = -1;
-       for(auto &it : mp)
-       {
-           maxi = max(maxi,it.second);
-       }
+       
        for(auto &it : mp)
        {
            if(maxi == it.second)
