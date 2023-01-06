@@ -11,7 +11,7 @@ class Solution{
   public:
     long long int floorSqrt(long long int x) 
     {
-       return sqrt(x);
+       return pow(2, ((log(x)/log(2))/2));
     }
 };
 
