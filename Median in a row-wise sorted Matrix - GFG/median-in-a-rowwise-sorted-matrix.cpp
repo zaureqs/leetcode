@@ -10,18 +10,55 @@ using namespace std;
 
 class Solution{   
 public:
-    int median(vector<vector<int>> &matrix, int R, int C){
-        vector<int> v;
-        for(int i=0;i<R;i++)
+
+    int smaller(vector<int> &arr,int mid)
+    {
+        int l = 0;
+        int h = arr.size()-1;
+        while(l <= h)
         {
-            for(int j=0;j<C;j++)
+            int midd = (l + h)/2;
+            if(arr[midd] <= mid) 
             {
-                v.push_back(matrix[i][j]); 
+                l = midd + 1;
+            }
+            else
+            {
+                h = midd - 1;
             }
         }
-        sort(v.begin(),v.end());
-        int mid =(v.size()-1)/2;
-        return v[mid];          
+        return l;
+    }
+    int median(vector<vector<int>> &matrix, int n, int m)
+    {
+        int mini = INT_MAX;
+        int maxi = INT_MIN;
+        for(int i=0;i<n;i++)
+        {
+            mini = min(mini,matrix[i][0]);
+            maxi = max(maxi , matrix[i][m-1]);
+        }
+        int l = mini;
+        int h = maxi;
+        
+        while(l <= h)
+        {
+            int mid = l + (h - l)/2;
+            int cnt = 0;
+            for(int i=0;i<n;i++)
+            {
+                cnt += smaller(matrix[i],mid);
+            }
+            if(cnt <= (m*n)/2)
+            {
+                l = mid + 1;
+            }
+            else
+            {
+                h = mid - 1;
+            }
+        }
+        return l;
     }
 };
 
