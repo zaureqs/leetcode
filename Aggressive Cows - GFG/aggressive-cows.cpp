@@ -40,15 +40,7 @@ public:
         {
             mid = (left+right)/2;
             
-            if(check(stalls,k,mid))
-            {
-                ans = mid;
-                left = mid+1;
-            }
-            else
-            {
-                right = mid;
-            }
+            (check(stalls,k,mid)) ? left = mid+1 : right = mid;
         }
         return left-1;
     }
