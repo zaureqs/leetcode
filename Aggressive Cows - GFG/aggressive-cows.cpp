@@ -32,7 +32,7 @@ public:
         sort(stalls.begin(), stalls.end());
         
         int left = 0;
-        int right = 1000000000;
+        int right = stalls[n-1];
         int mid;
         int ans;
         
