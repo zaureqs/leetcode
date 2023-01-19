@@ -31,7 +31,7 @@ public:
     {
         sort(stalls.begin(), stalls.end());
         
-        int left = 0;
+        int left = 1;
         int right = stalls[n-1];
         int mid;
         int ans;
