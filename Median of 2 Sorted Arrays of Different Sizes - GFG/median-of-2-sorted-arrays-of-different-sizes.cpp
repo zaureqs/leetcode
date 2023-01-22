@@ -11,73 +11,53 @@ double MedianOfArrays(vector<int>& array1, vector<int>& array2);
 
 class Solution{
     public:
-    void sortTheArray(vector<int> &arr1,vector<int> &arr2,int n,int m)
+    double MedianOfArrays(vector<int>& nums1, vector<int>& nums2)
     {
-        int gap =  ceil((float)(n + m) / 2);;
+        int n = nums1.size();
+        int m = nums2.size();
         
-        while(gap > 0)
+        if(m < n)
         {
-            int i = 0;
-            int j = gap;
-            
-            while(j < (n+m))
-            {
-                if(j < n && arr1[i] > arr1[j])
-                {
-                    swap(arr1[i],arr1[j]);
-                }
-                else if(j >= n && i < n && arr1[i] > arr2[j - n])
-                {
-                    swap(arr1[i],arr2[j - n]);
-                }
-                else if(j >= n && i >= n && arr2[i - n] > arr2[j - n])
-                {
-                    swap(arr2[i - n],arr2[j - n]);
-                }
-                i++;
-                j++;
-            }
-            
-            if(gap == 1) gap = 0;
-            gap = ceil((float)gap/2);
+            return MedianOfArrays(nums2,nums1);
         }
-    }
-    double MedianOfArrays(vector<int>& array1, vector<int>& array2)
-    {
-        int n = array1.size();
-        int m = array2.size();
-        sortTheArray(array1,array2,n,m);
         
-        if((n+m) %2 == 1)
+        int low = 0;
+        int high = n;
+        int l1,l2,r1,r2,mid1,mid2;
+        
+        while(low <= high)
         {
-            int mid = (n + m)/2;
-            if(mid < n)
+            mid1 = (low+high)/2;
+            mid2 = (m+n+1)/2 - mid1;
+            
+            l1 = (mid1 == 0) ? INT_MIN : nums1[mid1-1];
+            l2 = (mid2 == 0) ? INT_MIN : nums2[mid2-1];
+            
+            r1 = (mid1 == n) ? INT_MAX : nums1[mid1];
+            r2 = (mid2 == m) ? INT_MAX : nums2[mid2];
+            
+            if(l1 <= r2 && l2 <= r1)
             {
-                return (double)array1[mid];
+                if((m+n)%2==0)
+                {
+                    return 1.0*(max(l1,l2)+min(r1,r2))/2;
+                }
+                else
+                {
+                    return 1.0*max(l1,l2);
+                }
+            }
+            else if(l1 > r2)
+            {
+                high = mid1-1;
             }
             else 
             {
-                return (double)array2[mid - n];
+                low = mid1+1;
             }
         }
-        else
-        {
-            int mid = (n + m)/2 - 1;
-            int mid2 = mid + 1;
-            if(mid2 < n)
-            {
-                return (double)(array1[mid] + array1[mid2])/2;
-            }
-            else if(mid2 >= n && mid < n)
-            {
-                return (double)(array1[mid] + array2[mid2 - n])/2;
-            }
-            else if(mid >= n)
-            {
-                return (double)(array2[mid - n] + array2[mid2 - n])/2;
-            }
-        }
-        return 1.0;
+        return 0.0;
+    
     }
 };
 
