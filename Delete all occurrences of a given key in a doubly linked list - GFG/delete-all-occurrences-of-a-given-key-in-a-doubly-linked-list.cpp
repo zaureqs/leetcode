@@ -48,14 +48,9 @@ struct Node
 
 class Solution {
   public:
-    void deleteNode(struct Node **head1, int &i)
+    void deleteNode(struct Node **head1)
     {
        struct Node* temp1 = *head1;
-       if(i == 1)
-       {
-           temp1 = temp1->next;
-           return;
-       }
        if(temp1->next == NULL)
        {
            temp1->prev->next = NULL;
@@ -72,7 +67,6 @@ class Solution {
     }
     void deleteAllOccurOfX(struct Node** head, int x) 
     {
-        int i = 1;
         struct Node* temp = *head;
         while(temp && temp->data == x)
         {
@@ -83,9 +77,8 @@ class Solution {
         {
             if(temp->data == x)
             {
-                deleteNode(&temp,i);
+                deleteNode(&temp);
             }
-            i++;
             temp = temp->next;
         }
     }
