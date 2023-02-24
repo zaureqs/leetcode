@@ -72,20 +72,17 @@ struct Node
 Node* deleteMid(Node* head)
 {
     if(head->next == NULL)
-        {
-            delete head;
-            return NULL;
-        }
-        Node * fast = head;
-        Node * temp_head = head;
-        Node * pre = NULL;
-        while(fast != NULL and fast->next != NULL)
-        {
-            fast = fast->next->next;
-            pre = temp_head;
-            temp_head = temp_head->next;
-        }
-        pre->next = temp_head->next;
-        delete temp_head;
-        return head;
+    {
+        delete head;
+        return NULL;
+    }
+    Node * fast = head->next->next;
+    Node * slow = head;
+    while(fast != NULL and fast->next != NULL)
+    {
+        fast = fast->next->next;
+        slow = slow->next;
+    }
+    slow->next = slow->next->next;
+    return head;
 }
