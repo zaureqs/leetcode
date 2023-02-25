@@ -42,32 +42,31 @@ struct Node
 class Solution{
 public:
     Node* divide(int N, Node *head){
-        vector<int> v;
+        Node* evenStart = new Node(-1);
+        Node* oddStart = new Node(-1);
+        
+        Node* even = evenStart;
+        Node* odd = oddStart;
         Node* temp = head;
-        while(temp != NULL)
+        
+        while(temp)
         {
-            v.push_back(temp->data);
-            temp = temp->next;    
-        }
-        temp = head;
-        for(int i=0;i<v.size();i++)
-        {
-            if(v[i]%2 == 0) 
+            if(temp->data % 2 == 0)
             {
-                temp->data = v[i];
-                temp = temp->next;
+                even->next = temp;
+                even = even->next;
             }
-        }
-        for(int i=0;i<v.size();i++)
-        {
-            if(v[i]%2 == 1) 
+            else
             {
-                temp->data = v[i];
-                temp = temp->next;
+                odd->next = temp;
+                odd = odd->next;
             }
-            
+            temp = temp->next;
         }
-        return head; 
+        even->next = oddStart->next;
+        odd->next = NULL; // ye nai likhte to output limit exceeded aata h : )
+        
+        return evenStart->next; 
     }
 };
 
