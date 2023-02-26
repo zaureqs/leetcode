@@ -33,71 +33,46 @@ class Solution
 {
     public:
     //Function to sort a linked list of 0s, 1s and 2s.
-    Node* segregate(Node *head) {
-        
-        Node *zero_start = new Node(-1);
-        Node *one_start = new Node(-1);
-        Node *two_start = new Node(-1);
-        Node* zero = zero_start;
-        Node* one = one_start;
-        Node* two = two_start;
-        while(head)
+    Node* segregate(Node *head) 
+    {
+        Node *curr = head;
+        int zerocount = 0, onecount = 0, twocount = 0;
+        while(curr != NULL)
         {
-            if(head->data == 0)
+            if(curr->data == 0)
             {
-                zero->next = head;
-                zero = zero->next;
+                zerocount++;
             }
-            else if(head->data == 1)
+            else if(curr->data == 1)
             {
-                one->next = head;
-                one = one->next;
+                onecount++;
             }
-            else
+            else if(curr->data == 2)
             {
-                two->next = head;
-                two = two->next;
+                twocount++;
             }
-            head = head->next;
+            curr = curr->next;
         }
-        if(zero_start->next == NULL && one_start->next == NULL && two_start->next ==NULL)
+        curr = head;
+        for(curr = head; curr != NULL; curr = curr->next)
         {
-            return NULL;
+            if(zerocount > 0)
+            {
+                curr->data = 0;
+                zerocount--;
+            }
+            else if(onecount > 0)
+            {
+                curr->data = 1;
+                onecount--;
+            }
+            else if(twocount > 0)
+            {
+                curr->data = 2;
+                twocount--;
+            }
         }
-        else if(zero_start->next == NULL && one_start->next == NULL)
-        {
-            return two_start->next;
-        }
-        if(zero_start->next == NULL && two_start->next ==NULL)
-        {
-            return one_start->next;
-        }
-        if(one_start->next == NULL && two_start->next ==NULL)
-        {
-            return zero_start->next;
-        }
-        if(zero_start->next == NULL)
-        {
-            one->next = two_start->next;
-            two->next = NULL;
-            return one_start->next;
-        }
-        if(one_start->next == NULL)
-        {
-            zero->next = two_start->next;
-            two->next = NULL;
-            return zero_start->next;
-        }
-        if(two_start->next == NULL)
-        {
-            zero->next = one_start->next;
-            one->next = NULL;
-            return zero_start->next;
-        }
-        zero->next = one_start->next;
-        one->next = two_start->next;
-        two->next = NULL;
-        return zero_start->next;
+        return head;
     }
 };
 
