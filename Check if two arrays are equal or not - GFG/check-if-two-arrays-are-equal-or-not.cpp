@@ -12,13 +12,18 @@ class Solution{
     public:
 
     //Function to check if two arrays are equal or not.
-    bool check(vector<ll> a, vector<ll> b, int n) {
-        //code here
-        sort(a.begin(),a.end());
-        sort(b.begin(),b.end());
-        for(int i = 0;i<n;i++)
+    bool check(vector<ll> A, vector<ll> B, int N) 
+    {
+        unordered_map<int,int> mp;
+        for(int i=0;i<N;i++)
         {
-            if(a[i] != b[i])
+            mp[A[i]]++;
+            mp[B[i]]--;
+        }
+        
+        for(auto &it : mp)
+        {
+            if(it.second != 0)
             {
                 return false;
             }
