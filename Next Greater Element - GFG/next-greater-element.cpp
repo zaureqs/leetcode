@@ -12,31 +12,14 @@ class Solution
     {
         // Your code here
         stack<long long> st;
-        st.push(nums[nums.size()-1]);
-        nums[nums.size()-1] = -1;
+        st.push(-1);
         
-        for(long long i = nums.size()-2; i>=0; i--)
+        for(long long i = nums.size()-1; i>=0; i--)
         {
-            if(!st.empty() && nums[i] < st.top())
-            {
-                long long temp = st.top();
-                st.push(nums[i]);
-                nums[i] = temp;
-            }
-            else{
-                while(!st.empty() && nums[i] >= st.top()) st.pop();
-                if(st.empty())
-                {
-                    st.push(nums[i]);
-                    nums[i] = -1;
-                }
-                else
-                {
-                    long long temp = st.top();
-                    st.push(nums[i]);
-                    nums[i] = temp;
-                }
-            }
+            while(st.top() != -1 && nums[i] >= st.top()) st.pop();
+            long long temp = st.top();
+            st.push(nums[i]);
+            nums[i] = temp;
         }
         return nums;
     }
